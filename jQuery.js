@@ -107,7 +107,9 @@ var
 	rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,
 
 	// Matches dashed string for camelizing
-	rmsPrefix = /^-ms-/,
+	//匹配 -ms- 前缀
+	rmsPrefix = /^-ms-/,	
+	//匹配任意英文字母
 	rdashAlpha = /-([a-z])/g,
 
 	// Used by jQuery.camelCase as callback to replace()
@@ -115,11 +117,13 @@ var
 		return letter.toUpperCase();
 	};
 
+//jQuery的原型，挂载在 jQuery.prototype 上的方法，即可让所有 jQuery 对象使用
 jQuery.fn = jQuery.prototype = {
 
 	// The current version of jQuery being used
+	//版本
 	jquery: version,
-
+	//构造函数
 	constructor: jQuery,
 
 	// The default length of a jQuery object is 0
