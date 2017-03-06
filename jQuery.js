@@ -128,7 +128,8 @@ jQuery.fn = jQuery.prototype = {
 
 	// The default length of a jQuery object is 0
 	length: 0,
-
+	//将对象转化为数组类型 
+	//toArray() 方法以数组的形式返回 jQuery 选择器匹配的元素。
 	toArray: function() {
 		return slice.call( this );
 	},
