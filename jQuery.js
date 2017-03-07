@@ -3,7 +3,7 @@
  * 注释：Lucy
  *
  * 最后更新：2016-11-27
- *
+ *	121 453
  */
 ( function( global, factory ) {
 
@@ -165,17 +165,21 @@ jQuery.fn = jQuery.prototype = {
 	each: function( callback ) {
 		return jQuery.each( this, callback );
 	},
-
+	
+	//将一组元素转换成其他数组（不论是否是元素数组）
 	map: function( callback ) {
 		return this.pushStack( jQuery.map( this, function( elem, i ) {
 			return callback.call( elem, i, elem );
 		} ) );
 	},
-
+	
+	//构建指定范围的jQuery对象数组
+	//$('li').slice(2, 4).css('background-color', 'red');
 	slice: function() {
 		return this.pushStack( slice.apply( this, arguments ) );
 	},
-
+	
+	//取第一个对象
 	first: function() {
 		return this.eq( 0 );
 	},
@@ -189,7 +193,13 @@ jQuery.fn = jQuery.prototype = {
 			j = +i + ( i < 0 ? len : 0 );
 		return this.pushStack( j >= 0 && j < len ? [ this[ j ] ] : [] );
 	},
-
+	
+	//回到最近的一个"破坏性"操作之前。即，将匹配的元素列表变为前一次的状态。
+	//如果之前没有破坏性操作，则返回一个空集。所谓的"破坏性"就是指任何改变所
+	//匹配的jQuery元素的操作。这包括在 Traversing 中任何返回一个jQuery对象的
+	//函数--'add', 'andSelf', 'children', 'filter', 'find', 'map', 'next', 
+	//'nextAll', 'not', 'parent', 'parents', 'prev', 'prevAll', 'siblings' 
+	//and 'slice'--再加上 Manipulation 中的 'clone'。
 	end: function() {
 		return this.prevObject || this.constructor();
 	},
@@ -283,17 +293,21 @@ jQuery.extend( {
 	},
 
 	noop: function() {},
-
+	
+	// 判断传入的对象是否为 function
 	isFunction: function( obj ) {
 		return jQuery.type( obj ) === "function";
 	},
-
+	
+	// 判断传入的对象是否为数组
 	isArray: Array.isArray,
-
+	
+	// 判断传入的对象是否为 window
 	isWindow: function( obj ) {
 		return obj != null && obj === obj.window;
 	},
-
+	
+	// 判断是否为数字类型
 	isNumeric: function( obj ) {
 
 		// As of jQuery 3.0, isNumeric is limited to
@@ -307,7 +321,8 @@ jQuery.extend( {
 			// subtraction forces infinities to NaN
 			!isNaN( obj - parseFloat( obj ) );
 	},
-
+	
+	// 判断对象是否为纯碎的对象
 	isPlainObject: function( obj ) {
 		var proto, Ctor;
 
@@ -328,7 +343,8 @@ jQuery.extend( {
 		Ctor = hasOwn.call( proto, "constructor" ) && proto.constructor;
 		return typeof Ctor === "function" && fnToString.call( Ctor ) === ObjectFunctionString;
 	},
-
+	
+	// 判断对象是否为空
 	isEmptyObject: function( obj ) {
 
 		/* eslint-disable no-unused-vars */
@@ -454,6 +470,9 @@ jQuery.extend( {
 	},
 
 	// arg is for internal usage only
+	// 将一组元素转换成其他数组（不论是否是元素数组）
+	// 你可以用这个函数来建立一个列表，不论是值、属性还是CSS样式，
+	// 或者其他特别形式。这都可以用'$.map()'来方便的建立。
 	map: function( elems, callback, arg ) {
 		var length, value,
 			i = 0,
@@ -486,6 +505,7 @@ jQuery.extend( {
 	},
 
 	// A global GUID counter for objects
+	// 全局计数器
 	guid: 1,
 
 	// Bind a function to a context, optionally partially applying any
